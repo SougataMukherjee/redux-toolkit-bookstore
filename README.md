@@ -1,13 +1,30 @@
 <<<<<<< HEAD
+
 # redux-toolkit-examples
-This is an example to create redux-toolkit examples
-=======
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# This is an example to create redux-toolkit examples
 
-Currently, two official plugins are available:
+Getting Started
+First, run the development server:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
->>>>>>> b29dd6e (first)
+```
+npm run dev
+
+# or
+
+yarn dev
+```
+
+Open http://localhost:3000 with your browser to see the result.
+
+Second, run the backend server:
+
+```
+npm install json-server
+
+# and
+
+json-server --watch db/db.json --port 5000
+```
+
+Open http://localhost:5000/posts with your browser to see the result.
