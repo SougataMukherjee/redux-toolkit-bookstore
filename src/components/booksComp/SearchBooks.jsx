@@ -1,4 +1,5 @@
 import { MdOutlineSearch } from "react-icons/md";
+import PropTypes from "prop-types";
 import "./SearchBooks.css";
 export const SearchBooks = ({ handleSearch }) => {
   return (
@@ -15,4 +16,8 @@ export const SearchBooks = ({ handleSearch }) => {
       </span>
     </div>
   );
+};
+
+SearchBooks.propTypes = {
+  handleSearch: PropTypes.func,
 };

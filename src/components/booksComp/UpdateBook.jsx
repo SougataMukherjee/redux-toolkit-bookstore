@@ -7,7 +7,7 @@ const UpdateBook = () => {
   let { id } = useParams();
   let dispatch = useDispatch();
   let navigate = useNavigate();
-  let { data, error, status } = useSelector((state) => state.book);
+  let { data, status } = useSelector((state) => state.book);
 
   let [state, setState] = useState({
     title: "",

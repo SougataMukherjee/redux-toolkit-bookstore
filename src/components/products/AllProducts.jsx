@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import productSlice, {
+import {
   fetchProducts,
   getAllProducts,
 } from "../../redux/productSlice/productSlice";
-import { FetchAllPosts } from "../../redux/posts/postSlice";
 
 const AllProducts = () => {
   let products = useSelector(getAllProducts);
