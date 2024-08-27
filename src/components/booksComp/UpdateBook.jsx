@@ -16,6 +16,7 @@ const UpdateBook = () => {
     author: "",
     id: "",
   });
+  const [toastShown, setToastShown] = useState(false);
   let { title, author } = state;
 
   const isFormDirty = title !== data.title || author !== data.author;
@@ -37,7 +38,16 @@ const UpdateBook = () => {
   let handleSubmit = (e) => {
     e.preventDefault();
     if (!isFormDirty) {
-      toast.success("nothing update");
+      if (!toastShown) {
+        toast.info("No changes made to update.");
+        setToastShown(true);
+        let timer;
+        timer = setTimeout(() => {
+          setToastShown(false);
+        }, 3000);
+        () => clearTimeout(timer);
+      }
+
       return;
     }
     dispatch(updateBookApi(state)).then(() => {
