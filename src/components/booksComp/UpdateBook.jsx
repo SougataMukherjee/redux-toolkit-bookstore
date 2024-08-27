@@ -2,6 +2,8 @@ import { Fragment, useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { singleBookApi, updateBookApi } from "./../../redux/books/bookSlice";
 import { useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const UpdateBook = () => {
   let { id } = useParams();
@@ -15,6 +17,8 @@ const UpdateBook = () => {
     id: "",
   });
   let { title, author } = state;
+
+  const isFormDirty = title !== data.title || author !== data.author;
 
   let handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -32,49 +36,62 @@ const UpdateBook = () => {
 
   let handleSubmit = (e) => {
     e.preventDefault();
+    if (!isFormDirty) {
+      toast.success("nothing update");
+      return;
+    }
     dispatch(updateBookApi(state)).then(() => {
       navigate("/all-books");
     });
   };
 
   return (
-    <div className="main-container">
-      {status ? (
-        "loading..."
-      ) : (
-        <Fragment>
-          <h1>Update Book</h1>
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="title">Title</label>
-              <input
-                type="text"
-                className="form-control"
-                id="title"
-                name="title"
-                value={title}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="author">Author</label>
-              <input
-                type="text"
-                className="form-control"
-                id="author"
-                name="author"
-                value={author}
-                onChange={handleChange}
-              />
-            </div>
+    <>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        closeOnClick
+        pauseOnHover
+        theme="colored"
+      />
+      <div className="main-container">
+        {status ? (
+          "loading..."
+        ) : (
+          <Fragment>
+            <h1>Update Book</h1>
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="title">Title</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="title"
+                  name="title"
+                  value={title}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="author">Author</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="author"
+                  name="author"
+                  value={author}
+                  onChange={handleChange}
+                />
+              </div>
 
-            <div className="form-group">
-              <button>Update book</button>
-            </div>
-          </form>
-        </Fragment>
-      )}
-    </div>
+              <div className="form-group">
+                <button type="submit">Update book</button>
+              </div>
+            </form>
+          </Fragment>
+        )}
+      </div>
+    </>
   );
 };
 
