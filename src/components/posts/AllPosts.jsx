@@ -6,7 +6,6 @@ import {
 } from "../../redux/posts/postSlice";
 import { Fragment, useState } from "react";
 
-
 const AllPosts = () => {
   let posts = useSelector(FetchAllPosts);
   let dispatch = useDispatch();
@@ -18,11 +17,11 @@ const AllPosts = () => {
 
   let { title, body } = state;
 
-  let handleChange = e => {
+  let handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
 
-  let handleSubmit = e => {
+  let handleSubmit = (e) => {
     e.preventDefault();
     // dispatch(addPost({ id: nanoid(), title, body }));
     //   with prepare callback way
@@ -57,7 +56,7 @@ const AllPosts = () => {
           <button>add post</button>
         </div>
       </form>
-      {posts?.map(post => {
+      {posts?.map((post) => {
         return (
           <Fragment key={post.id}>
             <h1>{post.title.toUpperCase()}</h1>
